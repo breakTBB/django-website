@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}我的网站{% endblock %}
+{% block nav_blog_active %}active{% endblock %}
+
+{% load staticfiles %}
+{% load comment_tags %}
+{% load likes_tags %}
+
+{% block header_extends %}
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+    <div class="container">
+        <div class="row">
+             <!-- PAGE TITLE -->
+             <div class="eskimo-page-title w-100">
+                    <h1 class="no-border">{% block blog_list_title %}项目列表{% endblock %}</h1>
+                </div>
+            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {% for blog in blogs %}
+                                <!-- POST 1 -->
+                                <div class="card card-horizontal">
+                                    <div class="card-body">
+                                        <div class="card-horizontal-left">
+                                            <div class="card-category">
+                                                <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
+                                            </div>
+                                            <h3 class="card-title"><a href="http://127.0.0.1:8000/blog/{{ result.object.id }}">{{ result.object.title }}</a></h3>
+                                            <div class="card-excerpt">
+                                                <p>{{ blog.content|striptags|truncatechars:120|safe }}</p>                   
+                                            </div>
+                                            <div class="card-horizontal-meta">
+                                                <div class="eskimo-author-meta">
+                                                    <a class="author-meta" href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a>
+                                                </div>
+                                                <div class="eskimo-date-meta">
+                                                    <a href="">{{ blog.created_time|date:"Y-m-d" }}</a>
+                                                </div>
+                                                <div class="eskimo-reading-meta">
+                                                    阅读({{ blog.get_read_num }})&nbsp;&nbsp;
+                                                    评论({% get_comment_count blog %})&nbsp;&nbsp;
+                                                    点赞({% get_like_count blog %})
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-horizontal-right" data-img="uploads/2018/05/blog4-1-1024x707.jpg">
+                                            <a class="card-featured-img" href="project.html"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% empty %}
+                            <div class="blog">
+                                <h3>暂无，敬请期待</h3>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                 <!-- PAGINATION -->
+                 <div class="eskimo-pager">
+                    <ul class='pagination flex-wrap'>
+                            {# 上一页 #}
+                            <li class='page-item'>
+                            {% if page_of_blogs.has_previous %}
+                                <a class='page-link' aria-label="Previous" href="?page={{ page_of_blogs.previous_page_number }}">
+                                    <i class="fa fa-chevron-left"></i></a></li>
+                            {% endif %}
+                            {# 全部页码 #}
+                            {% for page_num in page_range %}
+                                {% if page_num == page_of_blogs.number %}
+                                <li class='page-item active'><a class='page-link' href='#'>{{ page_num }}</a></li>
+                                {% else %}
+                                    {% if page_num == '...' %}
+                                        <li class='page-item'>{{ page_num }}</li>
+                                    {% else %}
+                                        <li class='page-item'><a class='page-link' href='?page={{ page_num }}'>{{ page_num }}</a></li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {# 下一页 #}
+                            {% if page_of_blogs.has_next %}
+                            <li class='page-item'>
+                                <a class='page-link' aria-label="Next" href="?page={{ page_of_blogs.next_page_number }}">
+                                    <i class="fa fa-chevron-right"></i></a></li>
+                            {% endif %}
+                        </li>
+                                            
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="hidden-xs col-sm-4 col-md-3 col-lg-3">
+                 <!-- CATEGORIES -->
+                 <div class="eskimo-categories eskimo-widget">
+                    <h5 class="eskimo-title-with-border"><span>项目分类</span></h5>
+                    <ul>
+                    {% for blog_type in blog_types %}
+                        <li>
+                            <a href="{% url 'blogs_with_type' blog_type.pk %}" >{{ blog_type.type_name }}</a> <span class="badge badge-pill badge-default">{{ blog_type.blog_count }}</span>
+                        </li>
+                    {% empty %}
+                        <li>暂无分类</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="eskimo-categories eskimo-widget">
+                        <h5 class="eskimo-title-with-border"><span>日期归档</span></h5>
+                        <ul>
+                            {% for blog_date, blog_count in blog_dates.items %}
+                                <li>
+                                    <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}">
+                                        {{ blog_date|date:"Y年m月" }}
+                                    </a>                
+                                    <span class="badge badge-pill badge-default">{{ blog_count }}</span>                    
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+            </div>
+           
+
+        </div>
+    </div>
+{% endblock %}

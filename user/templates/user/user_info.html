@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}个人资料{% endblock %}
+{% block nav_home_active %}active{% endblock %}
+{% block content %}
+    <div class="containter">
+            <div class="col-xs-10 col-xs-offset-1">
+                    <div class="eskimo-categories eskimo-widget">
+                        {% if user.is_authenticated %}
+                        <h2 class="eskimo-title-with-border"><span>{{ user.username }}</span></h2>
+                        <ul>
+                            <li>昵称：{{ user.get_nickname }}</li>
+                            <li>邮箱：
+                                {% if user.email %}
+                                {{ user.email }}
+                                {% else %}
+                                未绑定 <a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">绑定邮箱</a>
+                                {% endif %}</li>
+                            <li>上一次登录的时间：{{ user.last_login|date:"Y-m-d H:i:s" }}</li>
+                            <div class="row justify-content-center">
+                            <li><a href="{% url 'change_password' %}" class="btn btn-outline-primary btn-md m-1">修改密码</a>
+                            <a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}" class="btn btn-outline-primary btn-md m-1">修改昵称</a></li>
+                            </div>
+                        </ul>
+                        {% else %}
+                        <span>未登录，跳转到首页...</span>
+                        <script type="text/javascript">
+                            window.location.href = '/';
+                        </script>
+                        {% endif %}
+                    </div>
+                </div>
+    </div>    
+{% endblock %}

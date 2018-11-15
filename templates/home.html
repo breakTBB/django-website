@@ -1,0 +1,79 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block title %} 川农大物联作品展示平台 {% endblock %} {% block header_extends %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+{% endblock %} {% block nav_home_active %}active{% endblock %} {% block content %}
+ <div class="clearfix"></div>
+ <!-- SLIDER -->
+ <div class="eskimo-carousel-container eskimo-bg-loader">
+        <div id="eskimo-post-slider" class="eskimo-slider">
+            <!-- SLIDE 1 -->
+            <div>
+                <a class="eskimo-slider-img" href="single-post.html"></a>
+                <ul class="eskimo-slider-image-meta eskimo-image-meta-post">
+                    <li><a href="single-post.html"><span class="badge badge-default">May 28, 2018</span></a></li>
+                    <li><a href="category.html"><span class="badge badge-default">软件 Or 硬件</span></a></li>
+                </ul>
+                <div class="clearfix"></div>
+                <img src="{% static 'img/test/blog-1200x600.jpg' %}" alt="Ketchup Flavored Ice Cream!" />
+                <div class="eskimo-slider-desc">
+                    <div class="eskimo-slider-desc-inner">
+                        <h2 class="card-title">标题</h2>
+                        <p>介绍</p>
+                    </div>
+                </div>
+            </div>
+             <!-- SLIDE 2 -->
+             <div>
+                    <a class="eskimo-slider-img" href="single-post.html"></a>
+                    <ul class="eskimo-slider-image-meta eskimo-image-meta-post">
+                        <li><a href="single-post.html"><span class="badge badge-default">May 28, 2018</span></a></li>
+                        <li><a href="category.html"><span class="badge badge-default">Food &amp; Drink</span></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <img src="{% static 'img/test/blog4-1-1200x600.jpg' %}" alt="Ketchup Flavored Ice Cream!" />
+                    <div class="eskimo-slider-desc">
+                        <div class="eskimo-slider-desc-inner">
+                            <h2 class="card-title">Ketchup Flavored Ice Cream!</h2>
+                            <p>Mandaremus illum possumus ullamco e qui de nisi enim anim. Si nulla si nisi, veniam litteris sed excepteur ne ut amet deserunt tempor nam expetendis de enim mandaremus. Ita ea minim esse cillum ut eram arbitror ullamco. Tamen ad expetendis ab ipsum proident</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+<!-- 图表容器 DOM -->
+<div id="higncharts"></div>
+ 
+<script>
+     // 图表配置
+     var options = {
+            chart: { type: 'line' },
+            title: { text: null },
+            xAxis: {
+                categories: {{ dates|safe }},   // x 轴分类
+                tickmarkPlacement: 'on',
+                title: { text: '前7日阅读量变化'},
+            },
+            yAxis: {
+                title: { text: null },
+                labels:{ enabled: false },
+                gridLineDashStyle: 'Dash',
+            },
+            series: [{                              // 数据列
+                name: '阅读量',                     // 数据列名
+                data: {{ read_nums }}               // 数据
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: { enabled: false },
+            credits: { enabled: false },
+        };
+        // 图表初始化函数
+        var chart = Highcharts.chart('higncharts', options);
+</script>
+
+{% endblock %}

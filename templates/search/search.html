@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block title %} 川农大物联作品展示平台 {% endblock %} {% block header_extends %}
+{% endblock %} {% block nav_home_active %}active{% endblock %} {% block content %}
+{% if query %}
+    <h3>搜索结果如下：</h3>
+    {% for result in page.object_list %}
+     <!-- POST 1 -->
+     <div class="card card-horizontal">
+        <div class="card-body">
+            <div class="card-horizontal-left">
+                <div class="card-category">
+                    <a href="category.html">Food &amp; Drink</a>
+                </div>
+                <h3 class="card-title"><a href="http://127.0.0.1:8000/blog/{{ result.object.id }}">{{ result.object.title }}</a></h3>
+                <div class="card-excerpt">
+                    <p>Mandaremus illum possumus ullamco e qui de nisi enim anim. Si nulla si nisi, veniam litteris sed excepteur ne ut amet deserunt tempor nam expetendis de enim mandaremus. Ita ea minim esse cillum ut eram arbitror ullamco. Tamen ad expetendis ab ipsum proident...</p>
+                </div>
+                <div class="card-horizontal-meta">
+                    <div class="eskimo-author-meta">
+                        By <a class="author-meta" href="author.html">Egemenerd</a>
+                    </div>
+                    <div class="eskimo-date-meta">
+                        <a href="single-post.html">May 28, 2018</a>
+                    </div>
+                    <div class="eskimo-reading-meta">3 min read</div>
+                </div>
+            </div>
+            <div class="card-horizontal-right" data-img="uploads/2018/05/blog4-1-1024x707.jpg">
+                <a class="card-featured-img" href="single-post.html"></a>
+            </div>
+        </div>
+    </div>
+        <a href="http://127.0.0.1:8000/blog/{{ result.object.id }}">{{ result.object.title }}</a><br/>
+    {% empty %}
+        <p>啥也没找到</p>
+    {% endfor %}
+    {% if page.has_previous or page.has_next %}
+        <div>
+            {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; 上一页{% if page.has_previous %}</a>{% endif %}
+        |
+            {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}下一页 &raquo;{% if page.has_next %}</a>{% endif %}
+        </div>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
