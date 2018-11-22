@@ -45,9 +45,6 @@ INSTALLED_APPS = [
     'likes',
     'user',
     'haystack',
-    'xadmin',
-    'crispy_forms',
-    'reversion',
 ]
 
 MIDDLEWARE = [

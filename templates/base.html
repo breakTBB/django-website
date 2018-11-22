@@ -5,10 +5,6 @@
 <head>
     <!-- META TAGS -->
     <meta charset="UTF-8">
-    
-{#    尝试加下站标#}
-<link rel="shortcut icon" href={% static 'img/favicon.ico' %}>
-
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -51,7 +47,7 @@
                                     <li><a href="{% url 'home' %}">首页</a>
                                     </li>
                                     <li><a href="{% url 'blog_list' %}">项目列表</a>
-                                    
+                                      
                                     </li>
                                     <li><a href="{% url 'aboutus' %}">关于我们</a> </li>
                                     {% if not user.is_authenticated %}
@@ -87,7 +83,7 @@
                             <div id="eskimo-social-inner">
                                 <ul class="eskimo-social-icons">
                                     <li><a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2839296425&website=www.oicqzone.com"><i class="fa fa-qq"></i></a></li>
-                                    <li><a href="https://github.com/breakTBB"><i class="fa fa-github-alt"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-github-alt"></i></a></li>
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
