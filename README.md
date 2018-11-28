@@ -2,7 +2,7 @@
 
 # back-end 157310677@qq.com
 
-# front-end xiangninga@vip.qq.com(479803313)
+# front-end 479803313@qq.com
 
 
 ![pycharm](pycharm.png)
