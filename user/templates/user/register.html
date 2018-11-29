@@ -34,36 +34,6 @@
                         </script>
                     {% endif %}    
                 </div>
-        <!-- <div class="row">
-            <div class="col-xs-4 col-xs-offset-4">
-                {% if not user.is_authenticated %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">注册</h3>
-                        </div>
-                        <div class="panel-body">
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                {% for field in reg_form %}
-                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                                    {{ field }}
-                                    <p class="text-danger">{{ field.errors.as_text }}</p>
-                                {% endfor %}
-                                <span class="text-danger">{{ reg_form.non_field_errors }}</span>
-                                <div class="clearfix"></div>
-                                <button id="send_code" class="btn btn-primary pull-left">发送验证码</button>
-                                <input type="submit" value="注册" class="btn btn-primary pull-right">
-                            </form>
-                        </div>
-                    </div>    
-                {% else %}
-                    <span>已登录，跳转到首页...</span>
-                    <script type="text/javascript">
-                        window.location.href = '/';
-                    </script>
-                {% endif %}              
-            </div>
-        </div> -->
     </div>    
 {% endblock %}
 
