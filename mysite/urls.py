@@ -19,15 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 #import haystack
-import xadmin
-xadmin.autodiscover()
-from xadmin.plugins import xversion
-xversion.register_models()
-
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('xadmin/', xadmin.site.urls),
     path('admin/', admin.site.urls),
     path('ckeditor', include('ckeditor_uploader.urls')),
     path('blog/', include('blog.urls')),

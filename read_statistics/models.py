@@ -10,9 +10,6 @@ class ReadNum(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
-    class Meta:
-        verbose_name = "阅读数量"
-        verbose_name_plural = verbose_name
 
 class ReadNumExpandMethod():
     def get_read_num(self):
@@ -23,7 +20,6 @@ class ReadNumExpandMethod():
         except exceptions.ObjectDoesNotExist:
             return 0
 
-
 class ReadDetail(models.Model):
     date = models.DateField(default=timezone.now)
     read_num = models.IntegerField(default=0)
@@ -31,8 +27,4 @@ class ReadDetail(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
-
-    class Meta:
-        verbose_name = "阅读详情"
-        verbose_name_plural = verbose_name
     

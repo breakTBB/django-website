@@ -21,6 +21,4 @@ class Comment(models.Model):
         return self.text
 
     class Meta:
-        verbose_name = "评论"
-        verbose_name_plural = verbose_name
         ordering = ['comment_time']

@@ -1,0 +1,51 @@
+.cont_form_sign_up {
+    position: absolute;
+    width: 320px;
+    float: left;
+    opacity: 0;
+    display: none;
+    transition: all 0.5s;
+  }
+  
+  
+  .cont_form_sign_up>input {
+    text-align: left;
+    padding: 15px 5px;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 260px;
+    border: none;
+    color: #757575;
+  }
+  
+  .cont_form_sign_up>h2 {
+    margin-top: 50px;
+    font-weight: 400;
+    color: #757575;
+  }
+  
+  
+  .cont_form_login>input {
+    padding: 15px 5px;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 260px;
+    border: none;
+    text-align: left;
+    color: #757575;
+  }
+  
+  .cont_form_login>h2 {
+    margin-top: 110px;
+    font-weight: 400;
+    color: #757575;
+  }
+  
+  .cont_form_login>a,
+  .cont_form_sign_up>a {
+    color: #757575;
+    position: relative;
+    float: left;
+    margin: 10px;
+    margin-left: 30px;
+  }
