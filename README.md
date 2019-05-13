@@ -1,7 +1,3 @@
-# Deployed at http://119.27.181.91:8000/
-## 技术交流 Techie Squad
-## QQ Group:  894859699
-
-
+之前部署在学校容器云上，没留图
 
 ![pycharm](pycharm.png)
