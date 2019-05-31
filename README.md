@@ -1,3 +1,2 @@
-之前部署在学校容器云上，没留图
+![preview](preview.png)
 
-![pycharm](pycharm.png)
